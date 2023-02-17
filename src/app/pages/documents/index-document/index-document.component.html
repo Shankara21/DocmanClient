@@ -1,0 +1,150 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>List Document {{ name | uppercase}}</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item active">index</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section dashboard">
+   <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <h5 class="card-title">title</h5>
+            <div>
+              <a
+                routerLink="/create"
+                class="btn btn-primary my-3 m-2"
+                style="border-radius: 13px"
+                >Create Data</a
+              >
+              <a
+                (click)="reload()"
+                class="btn btn-secondary my-3"
+                style="border-radius: 13px"
+              ><i class="fa-sharp fa-solid fa-rotate-right"></i></a>
+            </div>
+          </div>
+         <div class="d-flex justify-content-between">
+            <!-- <form [formGroup]="filterYear">
+              <label for="filterYear" class="form-label">By Year</label>
+                <select
+                  formControlName="year"
+                  id="filterYear"
+                  (change)="filter()"
+                  class="form-select"
+                  style="border-radius: 13px;width: 100px;"
+                >
+                  <option value="{{ item }}" *ngFor="let item of years">
+                    {{ item }}
+                  </option>
+                </select>
+
+            </form> -->
+          <div *ngIf="data.length">
+            <label for="search" class="form-label">Search</label>
+             <input
+             id="search"
+            type="text"
+            class="form-control"
+            [(ngModel)]="term"
+            placeholder="Search"
+            style="border-radius: 13px;width: 200px;"
+          />
+          </div>
+
+         </div>
+          <div class="row my-2" >
+            <div class="col-3">
+            </div>
+          </div>
+          <div class="row my-2">
+          </div>
+          <table class="table table-hover text-center ">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Judul</th>
+                <th scope="col">Nomor Dokumen</th>
+                <th scope="col">Nomor Revisi</th>
+                <th scope="col">Tanggal</th>
+                <th scope="col">Tanggal Kadaluarsa</th>
+                <th scope="col">Dokumen</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!data.length; else tes">
+                <td colspan="8" class="text-center">Belum ada data.</td>
+              </tr>
+              <ng-template #tes>
+                <tr
+                  *ngFor="
+                    let item of data
+                      | filter : term
+                      | paginate
+                        : { itemsPerPage: itemsPerPage, currentPage: p };
+                    index as i
+                  "
+                >
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ item.title }}</td>
+                  <td>{{ item.noDoc }}</td>
+                  <td>
+                    {{ item.noRev }}
+                  </td>
+                  <td>{{ item.date | date:'shortDate' }}</td>
+                  <td>{{ item.expDate | date:'shortDate' }}</td>
+                  <td>
+                    <a routerLink="http://localhost:3000/{{ item.linkDoc }}">{{ item.linkDoc }}</a>
+                    <!-- <iframe [src]="'http:localhost:3000/{{ item.linkDoc }}'" frameborder="0"></iframe> -->
+                    <br>
+                    <a href="http://localhost:3000/{{ item.linkDoc }}">asdasdq</a>
+                  </td>
+                  <td>
+                    <div class="dropdown">
+                      <i
+                        class="bi bi-three-dots-vertical"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      ></i>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            routerLink="/edit/{{ item.id }}"
+                            ><i class="bi bi-pencil"></i> Edit</a
+                          >
+                        </li>
+                        <li>
+                          <form action="">
+                            <button
+                              class="dropdown-item"
+                              type="submit"
+                              (click)="delete(item.id)"
+                            >
+                              <i class="bi bi-trash"></i>
+                              Delete
+                            </button>
+                          </form>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </tbody>
+          </table>
+          <div *ngIf="data.length" class="d-flex justify-content-center mt-3">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

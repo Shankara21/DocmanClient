@@ -1,7 +1,15 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
-       <li class="nav-item"> <a class="nav-link " routerLink="/dashboard"> <i class="bi bi-grid"></i> <span>Dashboard</span> </a></li>
-       <li class="nav-item">
+       <li class="nav-item"> <a class="nav-link " routerLink="/dashboard" routerLinkActive="active"> <i class="bi bi-grid"></i> <span>Dashboard</span> </a></li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-menu-button-wide"></i><span>Documents</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+          <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+             <li> <a routerLink="/isp"routerLinkActive="active"> <i class="bi bi-circle"></i><span>ISP</span> </a></li>
+             <li> <a routerLink="/wi"routerLinkActive="active"> <i class="bi bi-circle"></i><span>WI</span> </a></li>
+             <li> <a routerLink="/form"routerLinkActive="active"> <i class="bi bi-circle"></i><span>FORM</span> </a></li>
+          </ul>
+       </li>
+       <!-- <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i> </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
              <li> <a routerLink="/alerts"> <i class="bi bi-circle"></i><span>Alerts</span> </a></li>
@@ -57,6 +65,6 @@
        <li class="nav-item"> <a class="nav-link collapsed" routerLink="/pages-register"> <i class="bi bi-card-list"></i> <span>Register</span> </a></li>
        <li class="nav-item"> <a class="nav-link collapsed" routerLink="/pages-login"> <i class="bi bi-box-arrow-in-right"></i> <span>Login</span> </a></li>
        <li class="nav-item"> <a class="nav-link collapsed" routerLink="/pages-error404"> <i class="bi bi-dash-circle"></i> <span>Error 404</span> </a></li>
-       <li class="nav-item"> <a class="nav-link collapsed" routerLink="/pages-blank"> <i class="bi bi-file-earmark"></i> <span>Blank</span> </a></li>
+       <li class="nav-item"> <a class="nav-link collapsed" routerLink="/pages-blank"> <i class="bi bi-file-earmark"></i> <span>Blank</span> </a></li> -->
     </ul>
  </aside>

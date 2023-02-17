@@ -19,14 +19,33 @@ export class ControlService {
   //?/ Http Methods ///
   ////////////////////
 
+  // Category
+  getCategory() {
+    return this.HttpClient.get(this.port3000 + 'categories')
+      .pipe(catchError(this.errorHttpHandler))
+  }
+  getByName(params: any) {
+    return this.HttpClient.get(this.port3000 + `categories/${params}`)
+      .pipe(catchError(this.errorHttpHandler))
+  }
 
+  // Document
+  getDocument(params: any) {
+    // alert(params);
+    return this.HttpClient.get(this.port3000 + `documents/${params}`)
+      .pipe(catchError(this.errorHttpHandler))
+  }
+  createDocument(params: any) {
+    return this.HttpClient.post(this.port3000 + 'documents', params)
+      .pipe(catchError(this.errorHttpHandler))
+  }
 
   //////////////////////
   //!/ Http Methods ///
   ////////////////////
 
 
-  
+
   // Error handling
   errorHttpHandler(error: any) {
     let errorMessage = '';
