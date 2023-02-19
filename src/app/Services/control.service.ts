@@ -25,6 +25,10 @@ export class ControlService {
       .pipe(catchError(this.errorHttpHandler))
   }
   getByName(params: any) {
+    return this.HttpClient.get(this.port3000 + `categories/filterName/${params}`)
+      .pipe(catchError(this.errorHttpHandler))
+  }
+  getById(params: any) {
     return this.HttpClient.get(this.port3000 + `categories/${params}`)
       .pipe(catchError(this.errorHttpHandler))
   }

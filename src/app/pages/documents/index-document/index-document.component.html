@@ -29,7 +29,7 @@
             </div>
           </div>
          <div class="d-flex justify-content-between">
-            <!-- <form [formGroup]="filterYear">
+            <form [formGroup]="filterYear">
               <label for="filterYear" class="form-label">By Year</label>
                 <select
                   formControlName="year"
@@ -43,7 +43,7 @@
                   </option>
                 </select>
 
-            </form> -->
+            </form>
           <div *ngIf="data.length">
             <label for="search" class="form-label">Search</label>
              <input
@@ -99,10 +99,7 @@
                   <td>{{ item.date | date:'shortDate' }}</td>
                   <td>{{ item.expDate | date:'shortDate' }}</td>
                   <td>
-                    <a routerLink="http://localhost:3000/{{ item.linkDoc }}">{{ item.linkDoc }}</a>
-                    <!-- <iframe [src]="'http:localhost:3000/{{ item.linkDoc }}'" frameborder="0"></iframe> -->
-                    <br>
-                    <a href="http://localhost:3000/{{ item.linkDoc }}">asdasdq</a>
+                    <a href="http://localhost:3000/{{ item.linkDoc }}" class="btn btn-primary" target="_blank" style="border-radius: 50%;"><i class="fa-solid fa-eye"></i></a>
                   </td>
                   <td>
                     <div class="dropdown">

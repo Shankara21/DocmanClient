@@ -34,11 +34,8 @@ export class IndexDocumentComponent implements OnInit {
     this.ControlService.getByName(this.name).subscribe((res: any) => {
       this.category = res;
       this.idCategory = this.category[0].id;
-      console.log('INI ID CATEGORY');
-      console.log(this.idCategory);
       this.ControlService.getDocument(this.idCategory).subscribe((res: any) => {
         this.data = res;
-        console.log(res);
       })
     })
 
@@ -60,7 +57,7 @@ export class IndexDocumentComponent implements OnInit {
     // });
   }
   filter() {
-    console.log(this.filterYear.value);
+    // console.log(this.filterYear.value);
 
     // this.ControlService.filterByYear(this.filterYear.value).subscribe((res: any) => {
     //   this.data = res;
