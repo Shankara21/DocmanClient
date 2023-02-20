@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, Subject, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,11 @@ export class ControlService {
       'Content-Type': 'application/json'
     })
   }
+
+  // private node: Subject<Node> = new BehaviorSubject<Node>([]);
+
+  // get
+
   //////////////////////
   //?/ Http Methods ///
   ////////////////////
@@ -41,6 +46,38 @@ export class ControlService {
   }
   createDocument(params: any) {
     return this.HttpClient.post(this.port3000 + 'documents', params)
+      .pipe(catchError(this.errorHttpHandler))
+  }
+  countDocument() {
+    return this.HttpClient.get(this.port3000 + 'documents/count/document')
+      .pipe(catchError(this.errorHttpHandler))
+  }
+  selectExp() {
+    return this.HttpClient.get(this.port3000 + 'documents/selectExp')
+      .pipe(catchError(this.errorHttpHandler))
+  }
+
+  // Auth
+  login(params: any) {
+    return this.HttpClient.post(this.port3000 + 'users/login', params)
+  }
+  register(params: any) {
+    return this.HttpClient.post(this.port3000 + 'users/register', params)
+  }
+  // make async function
+  // async register(params: any) {
+  //   try {
+  //     await this.HttpClient.post(this.port3000 + 'users/register', params)
+  //   } catch (error) {
+
+  //   }
+  // }
+  logout(params:any) {
+    return this.HttpClient.delete(this.port3000 + `users/logout/${params}`)
+      .pipe(catchError(this.errorHttpHandler))
+  }
+  refreshToken(params:any) {
+    return this.HttpClient.get(this.port3000 + `users/refreshToken/${params}`)
       .pipe(catchError(this.errorHttpHandler))
   }
 

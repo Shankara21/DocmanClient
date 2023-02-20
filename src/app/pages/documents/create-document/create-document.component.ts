@@ -25,7 +25,12 @@ export class CreateDocumentComponent implements OnInit {
 
   // mengambil tanggal sekarang menggunakan moment
   now = moment().format('YYYY-MM-DD');
+
   ngOnInit(): void {
+    if (localStorage.getItem('refreshToken') == null) {
+      this.router.navigate(['/login']);
+    }
+
     this.ControlService.getCategory().subscribe((res: any) => {
       this.categories = res;
 

@@ -16,6 +16,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { IndexDocumentComponent } from './pages/documents/index-document/index-document.component';
 import { CreateDocumentComponent } from './pages/documents/create-document/create-document.component';
 import { UpdateDocumentComponent } from './pages/documents/update-document/update-document.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { UpdateDocumentComponent } from './pages/documents/update-document/updat
     DashboardComponent,
     IndexDocumentComponent,
     CreateDocumentComponent,
-    UpdateDocumentComponent
+    UpdateDocumentComponent,
+    LoginComponent,
+    RegisterComponent
 
   ],
   imports: [

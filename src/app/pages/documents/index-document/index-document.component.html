@@ -67,7 +67,7 @@
                 <th scope="col">Judul</th>
                 <th scope="col">Nomor Dokumen</th>
                 <th scope="col">Nomor Revisi</th>
-                <th scope="col">Tanggal</th>
+                <th scope="col">Tanggal Dokumen</th>
                 <th scope="col">Tanggal Kadaluarsa</th>
                 <th scope="col">Dokumen</th>
                 <th scope="col">Action</th>
@@ -93,8 +93,8 @@
                   <td>
                     {{ item.noRev }}
                   </td>
-                  <td>{{ item.date | date : "shortDate" }}</td>
-                  <td>{{ item.expDate | date : "shortDate" }}</td>
+                  <td>{{ item.date | date : "YYYY-MM-dd" }}</td>
+                  <td>{{ item.expDate | date : "YYYY-MM-dd"  }}</td>
                   <td>
                     <a
                       href="http://localhost:3000/{{ item.linkDoc }}"

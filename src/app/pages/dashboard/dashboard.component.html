@@ -1,6 +1,7 @@
 <main id="main" class="main">
   <div class="pagetitle">
     <h1>Dashboard Document Management</h1>
+    <h1>Selamat datang , {{ fullnameData }}</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
@@ -9,6 +10,30 @@
     </nav>
   </div>
   <section class="section dashboard">
+    <div *ngIf="isShow">
+      <div *ngIf="data.length" class="alert alert-warning alert-dismissible fade show" role="alert" style="border-radius: 20px;">
+      <h4 class="alert-heading">Reminder!</h4>
+      <p>
+        Halo, <strong>{{ fullname }}</strong>
+      </p>
+      <p>
+        Dokumen <strong>{{ category }}</strong> dengan judul
+        <strong>{{ title }} </strong> dan nomor dokumen
+        <strong>{{ noDoc }}</strong> akan segera memasuki masa tenggang pada
+        tanggal <strong>{{ expDate }}</strong> atau
+        <strong>{{ diffDate }}</strong> hari lagi
+      </p>
+      <hr />
+      <p class="mb-0">Cek dokumen <a routerLink="/{{ category|lowercase }}">disini</a></p>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+        (click)="show()"
+      ></button>
+    </div>
+    </div>
     <div class="row">
       <div class="col-12">
         <div class="row justify-content-center">
@@ -25,7 +50,7 @@
                     />
                   </div>
                   <h5 class="text-center">ISP (Integrated System Procedure)</h5>
-                  <h3 class="card-title mb-2 text-center">1</h3>
+                  <h3 class="card-title mb-2 text-center">{{ isp }}</h3>
                 </div>
               </div>
             </a>
@@ -43,7 +68,7 @@
                     />
                   </div>
                   <h5 class="text-center">WI (Work Instruction)</h5>
-                  <h3 class="card-title mb-2 text-center">1</h3>
+                  <h3 class="card-title mb-2 text-center">{{ wi }}</h3>
                 </div>
               </div>
             </a>
@@ -61,7 +86,7 @@
                     />
                   </div>
                   <h5 class="text-center">FORM</h5>
-                  <h3 class="card-title mb-2 text-center">1</h3>
+                  <h3 class="card-title mb-2 text-center">{{ form }}</h3>
                 </div>
               </div>
             </a>

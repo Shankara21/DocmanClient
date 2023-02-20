@@ -11,9 +11,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class IndexDocumentComponent implements OnInit {
 
   constructor(private router: Router, private ControlService: ControlService) { }
+
+
+
   data: any[] = [];
   category: any[] = [];
-  idCategory:any;
+  idCategory: any;
 
   // pagination
   p: number = 1;
@@ -31,6 +34,9 @@ export class IndexDocumentComponent implements OnInit {
   categoryId: number = 0;
   name: string = this.router.url.substring(1);
   ngOnInit(): void {
+    if (localStorage.getItem('refreshToken') == null) {
+      this.router.navigate(['/login']);
+    }
     this.ControlService.getByName(this.name).subscribe((res: any) => {
       this.category = res;
       this.idCategory = this.category[0].id;
