@@ -17,8 +17,14 @@ export class ControlService {
   }
 
   // private node: Subject<Node> = new BehaviorSubject<Node>([]);
+  public id: any;
+  public username: any;
+  public fullname: any;
+  public email: any;
+  public userLevel: any;
 
-  // get
+  public data: any;
+
 
   //////////////////////
   //?/ Http Methods ///
@@ -52,8 +58,8 @@ export class ControlService {
     return this.HttpClient.get(this.port3000 + 'documents/count/document')
       .pipe(catchError(this.errorHttpHandler))
   }
-  selectExp() {
-    return this.HttpClient.get(this.port3000 + 'documents/selectExp')
+  selectExp(params:any) {
+    return this.HttpClient.post(this.port3000 + 'documents/selectExp', params)
       .pipe(catchError(this.errorHttpHandler))
   }
 
@@ -72,11 +78,11 @@ export class ControlService {
 
   //   }
   // }
-  logout(params:any) {
+  logout(params: any) {
     return this.HttpClient.delete(this.port3000 + `users/logout/${params}`)
       .pipe(catchError(this.errorHttpHandler))
   }
-  refreshToken(params:any) {
+  refreshToken(params: any) {
     return this.HttpClient.get(this.port3000 + `users/refreshToken/${params}`)
       .pipe(catchError(this.errorHttpHandler))
   }

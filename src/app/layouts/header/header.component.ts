@@ -11,14 +11,24 @@ import { DOCUMENT } from '@angular/common'
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(@Inject(DOCUMENT) private document: Document, private ControlService: ControlService, private CookieService: CookieService, private route: Router) { }
+  constructor(@Inject(DOCUMENT) private document: Document, public ControlService: ControlService, private CookieService: CookieService, private route: Router) { }
   dateNow = new Date();
   token: any;
+
+  // Auth
+  username: any;
+  fullname: any;
+  email: any;
+  userLevel: any;
   ngOnInit(): void {
     setInterval(() => {
       this.dateNow = new Date();
     }, 1000);
     this.token = this.CookieService.get('refreshToken');
+
+    // console.log(this.ControlService.username);
+
+
   }
   logout() {
     this.ControlService.logout(this.token).subscribe((res: any) => {
