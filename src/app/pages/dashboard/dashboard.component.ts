@@ -11,7 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef, private ControlService: ControlService, private router: Router, private cookieService: CookieService) { }
+  constructor(private elementRef: ElementRef, public ControlService: ControlService, private router: Router, private cookieService: CookieService) { }
 
   isp: any;
   wi: any;
@@ -34,24 +34,34 @@ export class DashboardComponent implements OnInit {
   result: any;
   decoded: any;
 
-  id:any
-  username: any;
-  email: any;
-  fullnameData: any;
-  userLevel: any
+  id: any
+  // username: any;
+  // email: any;
+  // fullnameData: any;
+  // userLevel: any
 
   select!: FormGroup
+
+  refreshToken!: FormGroup;
+
+
+  userFound: any;
+  dataDocument:any[] = [];
   ngOnInit(): void {
 
 
-    if (localStorage.getItem('refreshToken') == null) {
+    const token = this.cookieService.get('refreshToken');
+
+    if (!this.cookieService.get('refreshToken')) {
       this.router.navigate(['/login']);
     }
 
+    this.refreshToken = new FormGroup({
+      refreshToken: new FormControl(token)
+    })
 
-    const token = this.cookieService.get('refreshToken');
     // mengecek apakah ada yang login
-    this.ControlService.refreshToken(token).subscribe((res: any) => {
+    this.ControlService.refreshToken(this.refreshToken.value).subscribe((res: any) => {
       this.decoded = jwt_decode(res.accessToken);
       this.ControlService.username = this.decoded.username;
       this.ControlService.email = this.decoded.email;
@@ -59,6 +69,7 @@ export class DashboardComponent implements OnInit {
       this.ControlService.userLevel = this.decoded.userLevel;
       this.ControlService.id = this.decoded.id;
       this.id = this.decoded.id;
+
 
       this.ControlService.data = {
         username: this.decoded.username,
@@ -68,37 +79,38 @@ export class DashboardComponent implements OnInit {
       }
 
       this.select = new FormGroup({
-        userId : new FormControl(this.id)
+        userId: new FormControl(this.id)
       })
+
+      // TODO REVISI
       this.ControlService.selectExp(this.select.value).subscribe((res: any) => {
         console.log("HASILNYA");
         console.log(res);
-        // this.data = res;
-        // this.title = res[0].title;
-        // this.category = res[0].Category.name;
-        // this.fullname = res[0].User.fullname;
-        // this.expDate = res[0].expDate;
-        // this.noDoc = res[0].noDoc;
+        this.userFound = res.userFound.fullname
+        this.dataDocument = res.exp;
 
-        // perbedaan antara tanggal sekarang dan tanggal expired
-        this.diffDate = Math.floor((Date.parse(this.expDate) - Date.now()) / 86400000);
+        for (let i = 0; i < this.dataDocument.length; i++) {
+          this.dataDocument[i].diffDate = Math.floor((Date.parse(this.dataDocument[i].expDate) - Date.now()) / 86400000);
+        }
       });
 
-
     });
-
     this.ControlService.countDocument().subscribe((res: any) => {
       this.isp = res.isp;
       this.wi = res.wi;
       this.form = res.form;
+      console.log(this.isp, this.wi, this.form);
     });
+
+
+
 
     var s = document.createElement("script");
     s.type = "text/javascript";
     s.src = "../assets/js/main.js";
     this.elementRef.nativeElement.appendChild(s);
 
-    console.log(this.ControlService.id);
+    // console.log(this.ControlService.id);
 
   }
   show() {

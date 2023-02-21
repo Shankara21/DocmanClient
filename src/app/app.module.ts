@@ -18,6 +18,10 @@ import { CreateDocumentComponent } from './pages/documents/create-document/creat
 import { UpdateDocumentComponent } from './pages/documents/update-document/update-document.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
+import { ForbiddenComponent } from './pages/error/forbidden/forbidden.component';
+import { ShowComponent } from './pages/documents/show/show.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
 
 
 @NgModule({
@@ -31,7 +35,9 @@ import { RegisterComponent } from './pages/auth/register/register.component';
     CreateDocumentComponent,
     UpdateDocumentComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForbiddenComponent,
+    ShowComponent
 
   ],
   imports: [
@@ -41,6 +47,7 @@ import { RegisterComponent } from './pages/auth/register/register.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

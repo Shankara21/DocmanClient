@@ -1,7 +1,7 @@
 <main id="main" class="main">
   <div class="pagetitle">
     <h1>Dashboard Document Management</h1>
-    <h1>Selamat datang , {{ fullnameData }}</h1>
+    <h1>Selamat datang , {{ ControlService.fullname }}</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
@@ -10,30 +10,32 @@
     </nav>
   </div>
   <section class="section dashboard">
-    <div *ngIf="isShow">
-      <div *ngIf="data.length" class="alert alert-warning alert-dismissible fade show" role="alert" style="border-radius: 20px;">
+
+      <div *ngIf="dataDocument.length" class="alert alert-dismissible fade show" role="alert" style="border-radius: 20px;background-color: #FED049;">
       <h4 class="alert-heading">Reminder!</h4>
       <p>
-        Halo, <strong>{{ fullname }}</strong>
+        Halo, <strong>{{ userFound }}</strong>
       </p>
-      <p>
-        Dokumen <strong>{{ category }}</strong> dengan judul
-        <strong>{{ title }} </strong> dan nomor dokumen
-        <strong>{{ noDoc }}</strong> akan segera memasuki masa tenggang pada
-        tanggal <strong>{{ expDate }}</strong> atau
-        <strong>{{ diffDate }}</strong> hari lagi
+     <div *ngFor="let item of dataDocument" style="background-color: #FFE15D;border-radius: 15px;" class="mb-3 p-2" >
+       <p>
+        Dokumen <strong>{{ item.Category.name }}</strong> dengan judul
+        <strong>{{ item.title }} </strong> dan nomor dokumen
+        <strong>{{ item.noDoc }}</strong> akan segera memasuki masa tenggang pada
+        tanggal <strong>{{ item.expDate }}</strong> atau
+        <strong>{{ item.diffDate }}</strong> hari lagi
       </p>
-      <hr />
-      <p class="mb-0">Cek dokumen <a routerLink="/{{ category|lowercase }}">disini</a></p>
+      <hr>
+      <p class="mb-0">Cek dokumen <a routerLink="/show/{{ item.id }}">disini</a></p>
+     </div>
       <button
         type="button"
         class="btn-close"
         data-bs-dismiss="alert"
         aria-label="Close"
-        (click)="show()"
+
       ></button>
     </div>
-    </div>
+
     <div class="row">
       <div class="col-12">
         <div class="row justify-content-center">
@@ -50,7 +52,7 @@
                     />
                   </div>
                   <h5 class="text-center">ISP (Integrated System Procedure)</h5>
-                  <h3 class="card-title mb-2 text-center">{{ isp }}</h3>
+                  <h5 class="text-center">{{ isp }}</h5>
                 </div>
               </div>
             </a>

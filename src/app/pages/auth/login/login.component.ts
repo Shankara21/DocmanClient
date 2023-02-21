@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.ControlService.login(this.form.value).subscribe((res: any) => {
-      localStorage.setItem('refreshToken', res.token);
       this.cookieService.set('refreshToken', res.token);
 
       this.router.navigate(['/dashboard']);

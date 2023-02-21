@@ -23,6 +23,8 @@ export class ControlService {
   public email: any;
   public userLevel: any;
 
+  public path: any;
+
   public data: any;
 
 
@@ -58,8 +60,16 @@ export class ControlService {
     return this.HttpClient.get(this.port3000 + 'documents/count/document')
       .pipe(catchError(this.errorHttpHandler))
   }
-  selectExp(params:any) {
+  selectExp(params: any) {
     return this.HttpClient.post(this.port3000 + 'documents/selectExp', params)
+      .pipe(catchError(this.errorHttpHandler))
+  }
+  showDocument(params: any) {
+    return this.HttpClient.get(this.port3000 + `documents/show/${params}`)
+      .pipe(catchError(this.errorHttpHandler))
+  }
+  deleteDocument(id: any) {
+    return this.HttpClient.delete(this.port3000 + `documents/${id}`)
       .pipe(catchError(this.errorHttpHandler))
   }
 
@@ -70,20 +80,12 @@ export class ControlService {
   register(params: any) {
     return this.HttpClient.post(this.port3000 + 'users/register', params)
   }
-  // make async function
-  // async register(params: any) {
-  //   try {
-  //     await this.HttpClient.post(this.port3000 + 'users/register', params)
-  //   } catch (error) {
-
-  //   }
-  // }
   logout(params: any) {
     return this.HttpClient.delete(this.port3000 + `users/logout/${params}`)
       .pipe(catchError(this.errorHttpHandler))
   }
   refreshToken(params: any) {
-    return this.HttpClient.get(this.port3000 + `users/refreshToken/${params}`)
+    return this.HttpClient.post(this.port3000 + `users/refreshToken`, params)
       .pipe(catchError(this.errorHttpHandler))
   }
 

@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateDocumentComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private cookieService : CookieService) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('refreshToken') == null) {
+    const token = this.cookieService.get('refreshToken');
+
+    if (!this.cookieService.get('refreshToken')) {
       this.router.navigate(['/login']);
     }
   }

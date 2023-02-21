@@ -1,3 +1,5 @@
+import { ShowComponent } from './pages/documents/show/show.component';
+import { ForbiddenComponent } from './pages/error/forbidden/forbidden.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { CreateDocumentComponent } from './pages/documents/create-document/create-document.component';
@@ -14,8 +16,10 @@ const routes: Routes = [
   { path: 'form', component: IndexDocumentComponent },
   { path: 'create', component: CreateDocumentComponent },
   { path: 'edit/:id', component: CreateDocumentComponent },
+  { path: 'show/:id', component: ShowComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'forbidden', component: ForbiddenComponent },
 ];
 
 @NgModule({

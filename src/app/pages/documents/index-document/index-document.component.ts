@@ -1,8 +1,9 @@
+import { CookieService } from 'ngx-cookie-service';
 import { ControlService } from 'src/app/Services/control.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-index-document',
   templateUrl: './index-document.component.html',
@@ -10,7 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class IndexDocumentComponent implements OnInit {
 
-  constructor(private router: Router, private ControlService: ControlService) { }
+  constructor(private router: Router, private ControlService: ControlService, private cookieService: CookieService) { }
 
 
 
@@ -32,11 +33,38 @@ export class IndexDocumentComponent implements OnInit {
 
   filterYear!: FormGroup;
   categoryId: number = 0;
+
+  refreshToken: any;
+  decoded: any;
+  id: any;
   name: string = this.router.url.substring(1);
   ngOnInit(): void {
-    if (localStorage.getItem('refreshToken') == null) {
+    const token = this.cookieService.get('refreshToken');
+
+    if (!this.cookieService.get('refreshToken')) {
       this.router.navigate(['/login']);
     }
+    this.refreshToken = new FormGroup({
+      refreshToken: new FormControl(token)
+    })
+
+    // mengecek apakah ada yang login
+    this.ControlService.refreshToken(this.refreshToken.value).subscribe((res: any) => {
+      this.decoded = jwt_decode(res.accessToken);
+      this.ControlService.username = this.decoded.username;
+      this.ControlService.email = this.decoded.email;
+      this.ControlService.fullname = this.decoded.fullname;
+      this.ControlService.userLevel = this.decoded.userLevel;
+      this.ControlService.id = this.decoded.id;
+      this.id = this.decoded.id;
+
+      this.ControlService.data = {
+        username: this.decoded.username,
+        email: this.decoded.email,
+        fullname: this.decoded.fullname,
+        userLevel: this.decoded.userLevel
+      }
+    });
     this.ControlService.getByName(this.name).subscribe((res: any) => {
       this.category = res;
       this.idCategory = this.category[0].id;
@@ -45,8 +73,9 @@ export class IndexDocumentComponent implements OnInit {
       })
     })
 
-
-
+    if (this.ControlService.userLevel == "User" && this.name == "wi" || this.ControlService.userLevel == "User" && this.name == "form") {
+      this.router.navigate(['/forbidden']);
+    }
 
     this.startYear = new Date().getFullYear() - 3;
     for (let i = this.startYear; i <= new Date().getFullYear() + 5; i++) {
@@ -57,10 +86,10 @@ export class IndexDocumentComponent implements OnInit {
     window.location.reload();
   }
   delete(id: any) {
-    // this.ControlService.deleteDocument(id).subscribe((res: any) => {
-    //   this.router.navigate([this.name]);
-    //   window.location.reload();
-    // });
+    this.ControlService.deleteDocument(id).subscribe((res: any) => { 
+      console.log(res);
+      this.reload();
+    })
   }
   filter() {
     // console.log(this.filterYear.value);

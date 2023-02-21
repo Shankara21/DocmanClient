@@ -1,0 +1,24 @@
+<main id="main" class="main">
+  <section class="section dashboard">
+    <div class="card">
+      <div class="card-header">Detail Document</div>
+      <div class="card-body">
+        <h5 class="card-title">{{ data.title }}</h5>
+        <p>{{ data.noDoc }}/{{ data.noRev }}</p>
+        <p>
+          Category : <strong>{{ data.Category.name }}</strong>
+        </p>
+        <p>
+          Tanggal Dokumen : <strong>{{ data.date }}</strong>
+        </p>
+        <p>
+          Tanggal Expired : <strong>{{ data.expDate }}</strong>
+        </p>
+        <ngx-extended-pdf-viewer [src]="path"  width="100%" height="85vh" style="background-color: aqua;"></ngx-extended-pdf-viewer>
+      </div>
+      <div class="card-footer">
+        PIC : <strong>{{ data.User.fullname }}</strong>
+      </div>
+    </div>
+  </section>
+</main>
