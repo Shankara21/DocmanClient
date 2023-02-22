@@ -1,1 +1,108 @@
-<p>update-document works!</p>
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Create Document</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">index</li>
+        <li class="breadcrumb-item active">Create</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section dashboard">
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <form
+            class="row my-4"
+            [formGroup]="form"
+            (ngSubmit)="submit()"
+            enctype="multipart/form-data"
+          >
+            <div class="col-12 mb-2">
+              <label for="inputNanme4" class="form-label">Judul Dokumen</label>
+              <textarea
+                formControlName="title"
+                class="form-control"
+                placeholder="Project Name"
+                id="floatingTextarea"
+                style="height: 75px; border-radius: 10px"
+                [(ngModel)]="document.title"
+              ></textarea>
+            </div>
+            <div class="col-4 mb-2">
+              <label for="inputEmail4" class="form-label">Nomor Dokumen</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputPassword4"
+                placeholder="Nomor Dokumen"
+                style="border-radius: 10px"
+                formControlName="noDoc"
+                [(ngModel)]="document.noDoc"
+              />
+            </div>
+            <div class="col-4 mb-2">
+              <label for="inputPassword4" class="form-label"
+                >Nomor Revisi</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputPassword4"
+                placeholder="Nomor Revisi"
+                style="border-radius: 10px"
+                formControlName="noRev"
+                [(ngModel)]="document.noRev"
+              />
+            </div>
+            <div class="col-4 mb-2">
+              <label for="inputPassword4" class="form-label"
+                >Tanggal Dokumen</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                id="inputPassword4"
+                placeholder="PIC"
+                style="border-radius: 10px"
+                formControlName="date"
+                [(ngModel)]="document.date"
+              />
+            </div>
+            <div class="col-6 mb-2">
+              <label for="inputPassword4" class="form-label">Category</label>
+              <select
+                id="inputState"
+                class="form-select"
+                style="border-radius: 10px"
+                formControlName="categoryId"
+                [(ngModel)]="document.categoryId"
+              >
+                <option value="{{ item.id }}" *ngFor="let item of categories">
+                  {{ item.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-6 mb-2">
+              <label for="inputPassword4" class="form-label">Dokumen</label>
+              <input
+                type="file"
+                class="form-control"
+                id="inputPassword4"
+                placeholder="PIC"
+                style="border-radius: 10px"
+                formControlName="linkDoc"
+                (change)="onChange($event)"
+              />
+            </div>
+
+            <div class="text-center my-3">
+              <button type="submit" class="btn btn-primary mx-2">Submit</button>
+              <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

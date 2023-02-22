@@ -72,6 +72,10 @@ export class ControlService {
     return this.HttpClient.delete(this.port3000 + `documents/${id}`)
       .pipe(catchError(this.errorHttpHandler))
   }
+  updateDocument(id: any, params: any) {
+    return this.HttpClient.put(this.port3000 + `documents/${id}`, params)
+      .pipe(catchError(this.errorHttpHandler))
+  }
 
   // Auth
   login(params: any) {
@@ -86,6 +90,24 @@ export class ControlService {
   }
   refreshToken(params: any) {
     return this.HttpClient.post(this.port3000 + `users/refreshToken`, params)
+      .pipe(catchError(this.errorHttpHandler))
+  }
+
+  // User
+  getUser() {
+    return this.HttpClient.get(this.port3000 + 'users')
+      .pipe(catchError(this.errorHttpHandler))
+  }
+  findUser(id: any) {
+    return this.HttpClient.get(this.port3000 + `users/${id}`)
+      .pipe(catchError(this.errorHttpHandler))
+  }
+  deleteUser(id: any) {
+    return this.HttpClient.delete(this.port3000 + `users/${id}`)
+      .pipe(catchError(this.errorHttpHandler))
+  }
+  updateUser(id: any, params: any) {
+    return this.HttpClient.put(this.port3000 + `users/${id}`, params)
       .pipe(catchError(this.errorHttpHandler))
   }
 

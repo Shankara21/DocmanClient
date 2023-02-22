@@ -1,0 +1,108 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>List User </h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item active">index</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section dashboard">
+    <div class="row">
+      <div class="card overflow-auto" style="border-radius: 10px;">
+        <div class="card-body">
+          <div class="d-flex justify-content-between mt-3">
+
+            <div *ngIf="data.length">
+              <label for="search" class="form-label">Search</label>
+              <input
+                id="search"
+                type="text"
+                class="form-control"
+                [(ngModel)]="term"
+                placeholder="Search"
+                style="border-radius: 13px; width: 200px"
+              />
+            </div>
+          </div>
+          <div class="row my-2">
+            <div class="col-3"></div>
+          </div>
+          <div class="row my-2"></div>
+          <table class="table table-hover text-center">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Fullname</th>
+                <th scope="col">Email</th>
+                <th scope="col">User level</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!data.length; else tes">
+                <td colspan="6" class="text-center">Belum ada data.</td>
+              </tr>
+              <ng-template #tes>
+                <tr
+                  *ngFor="
+                    let item of data
+                      | filter : term
+                      | paginate
+                        : { itemsPerPage: itemsPerPage, currentPage: p };
+                    index as i
+                  "
+                >
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ item.username }}</td>
+                  <td>{{ item.fullname }}</td>
+                  <td>
+                    {{ item.email }}
+                  </td>
+                  <td>{{ item.userLevel }}</td>
+                  <td>
+                    <div class="dropdown">
+                      <i
+                        class="bi bi-three-dots-vertical"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      ></i>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            routerLink="/editUser/{{ item.id }}"
+                            ><i class="bi bi-pencil"></i> Edit</a
+                          >
+                        </li>
+                        <li>
+                          <form action="">
+                            <button
+                              class="dropdown-item"
+                              type="submit"
+                              (click)="delete(item.id)"
+                            >
+                              <i class="bi bi-trash"></i>
+                              Delete
+                            </button>
+                          </form>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </tbody>
+          </table>
+          <div *ngIf="data.length" class="d-flex justify-content-center mt-3">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

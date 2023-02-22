@@ -46,9 +46,13 @@ export class DashboardComponent implements OnInit {
 
 
   userFound: any;
-  dataDocument:any[] = [];
+  dataDocument: any[] = [];
   ngOnInit(): void {
 
+    // Logout otomatis dalam 1 menit
+    // setInterval(() => {
+    //   this.cookieService.delete('refreshToken');
+    // }, 60000);
 
     const token = this.cookieService.get('refreshToken');
 
@@ -84,8 +88,6 @@ export class DashboardComponent implements OnInit {
 
       // TODO REVISI
       this.ControlService.selectExp(this.select.value).subscribe((res: any) => {
-        console.log("HASILNYA");
-        console.log(res);
         this.userFound = res.userFound.fullname
         this.dataDocument = res.exp;
 
@@ -99,7 +101,7 @@ export class DashboardComponent implements OnInit {
       this.isp = res.isp;
       this.wi = res.wi;
       this.form = res.form;
-      console.log(this.isp, this.wi, this.form);
+
     });
 
 
@@ -110,7 +112,6 @@ export class DashboardComponent implements OnInit {
     s.src = "../assets/js/main.js";
     this.elementRef.nativeElement.appendChild(s);
 
-    // console.log(this.ControlService.id);
 
   }
   show() {

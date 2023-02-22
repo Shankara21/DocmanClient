@@ -1,0 +1,47 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>List User</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item active">index</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section dashboard">
+    <div class="row">
+      <div class="card overflow-auto" style="border-radius: 10px">
+        <div class="card-body">
+          <h5 class="card-title">Vertical Form</h5>
+          <form class="row g-3" [formGroup]="form" (submit)="submit()">
+            <div class="col-6">
+              <label for="inputNanme4" class="form-label">Username</label>
+              <input type="text" class="form-control" id="inputNanme4" [(ngModel)]="username" formControlName="username" />
+            </div>
+            <div class="col-6">
+              <label for="inputEmail4" class="form-label">Fullname</label>
+              <input type="text" class="form-control" id="inputEmail4" [(ngModel)]="fullname" formControlName="fullname" />
+            </div>
+            <div class="col-6">
+              <label for="inputPassword4" class="form-label">Email</label>
+              <input type="email" class="form-control" id="inputPassword4" formControlName="email" [(ngModel)]="email"  />
+            </div>
+            <div class="col-6">
+              <label for="inputAddress" class="form-label">User Level</label>
+              <!-- user level dibuat dengan radio -->
+              <select name="" id="" class="form-select" formControlName="userLevel" [(ngModel)]="userLevel">
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+              </select>
+            </div>
+            
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary" style="margin-right: 10px;">Submit</button>
+              <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

@@ -62,6 +62,7 @@ export class CreateDocumentComponent implements OnInit {
     this.ControlService.getCategory().subscribe((res: any) => {
       this.categories = res;
 
+
     });
     console.log(this.ControlService.id);
 
@@ -100,12 +101,10 @@ export class CreateDocumentComponent implements OnInit {
       formData.append('date', this.form.value.date);
       formData.append('userId', this.ControlService.id);
 
-      console.log(this.form.value);
-      
 
-      // this.ControlService.createDocument(formData).subscribe((res: any) => {
-      //   this.router.navigate([`/${this.params}`]);
-      // });
+      this.ControlService.createDocument(formData).subscribe((res: any) => {
+        this.router.navigate([`/${this.params}`]);
+      });
     }
 
 

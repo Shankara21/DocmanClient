@@ -21,6 +21,8 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { ForbiddenComponent } from './pages/error/forbidden/forbidden.component';
 import { ShowComponent } from './pages/documents/show/show.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { IndexUserComponent } from './pages/manage/user/index-user/index-user.component';
+import { EditUserComponent } from './pages/manage/user/edit-user/edit-user.component';
 
 
 
@@ -37,7 +39,9 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     LoginComponent,
     RegisterComponent,
     ForbiddenComponent,
-    ShowComponent
+    ShowComponent,
+    IndexUserComponent,
+    EditUserComponent
 
   ],
   imports: [
