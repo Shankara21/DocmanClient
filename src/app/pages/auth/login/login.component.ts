@@ -14,6 +14,10 @@ export class LoginComponent implements OnInit {
   form!: FormGroup
   errorMsg: any;
   ngOnInit(): void {
+    const token = this.cookieService.get('docmanToken');
+    if (this.cookieService.get('docmanToken')) {
+      this.router.navigate(['/dashboard']);
+    }
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
@@ -24,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.ControlService.login(this.form.value).subscribe((res: any) => {
-      this.cookieService.set('refreshToken', res.token);
+      this.cookieService.set('docmanToken', res.token, { expires: 0.5, sameSite: 'Lax' });
 
       this.router.navigate(['/dashboard']);
     }, (err: any) => {

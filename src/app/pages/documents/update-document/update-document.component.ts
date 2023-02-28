@@ -36,9 +36,9 @@ export class UpdateDocumentComponent implements OnInit {
   document: any;
   ngOnInit(): void {
 
-    const token = this.cookieService.get('refreshToken');
+    const token = this.cookieService.get('docmanToken');
 
-    if (!this.cookieService.get('refreshToken')) {
+    if (!this.cookieService.get('docmanToken')) {
       this.router.navigate(['/login']);
     }
     this.refreshToken = new FormGroup({
@@ -79,7 +79,7 @@ export class UpdateDocumentComponent implements OnInit {
     this.ControlService.showDocument(this.name).subscribe((res: any) => {
       this.document = res;
 
-     })
+    })
   }
 
   onChange(event: any) {
@@ -107,7 +107,7 @@ export class UpdateDocumentComponent implements OnInit {
       formData.append('userId', this.ControlService.id);
 
 
-      this.ControlService.updateDocument(this.name,formData).subscribe((res: any) => {
+      this.ControlService.updateDocument(this.name, formData).subscribe((res: any) => {
         this.router.navigate([`/${this.params}`]);
       });
     }

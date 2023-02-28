@@ -28,9 +28,9 @@ export class IndexUserComponent implements OnInit {
       this.data = res;
     })
 
-    const token = this.cookieService.get('refreshToken');
+    const token = this.cookieService.get('docmanToken');
 
-    if (!this.cookieService.get('refreshToken')) {
+    if (!this.cookieService.get('docmanToken')) {
       this.router.navigate(['/login']);
     }
     this.refreshToken = new FormGroup({

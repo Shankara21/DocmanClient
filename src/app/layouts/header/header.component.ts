@@ -28,10 +28,10 @@ export class HeaderComponent implements OnInit {
     setInterval(() => {
       this.dateNow = new Date();
     }, 1000);
-    this.token = this.cookieService.get('refreshToken');
+    this.token = this.cookieService.get('docmanToken');
 
 
-    if (!this.cookieService.get('refreshToken')) {
+    if (!this.cookieService.get('docmanToken')) {
       this.router.navigate(['/login']);
     }
     this.refreshToken = new FormGroup({
@@ -62,8 +62,8 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     this.ControlService.logout(this.token).subscribe((res: any) => {
-      this.cookieService.delete('refreshToken');
-      localStorage.removeItem('refreshToken');
+      this.cookieService.delete('docmanToken');
+      localStorage.removeItem('docmanToken');
       localStorage.clear();
       this.router.navigate(['/login']);
     })

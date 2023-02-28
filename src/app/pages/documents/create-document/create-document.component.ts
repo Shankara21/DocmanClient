@@ -33,9 +33,9 @@ export class CreateDocumentComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const token = this.cookieService.get('refreshToken');
+    const token = this.cookieService.get('docmanToken');
 
-    if (!this.cookieService.get('refreshToken')) {
+    if (!this.cookieService.get('docmanToken')) {
       this.router.navigate(['/login']);
     }
     this.refreshToken = new FormGroup({

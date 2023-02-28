@@ -37,8 +37,8 @@ export class EditUserComponent implements OnInit {
       fullname: new FormControl('', [Validators.required]),
       userLevel: new FormControl('', [Validators.required])
     })
-    const token = this.cookieService.get('refreshToken');
-    if (!this.cookieService.get('refreshToken')) {
+    const token = this.cookieService.get('docmanToken');
+    if (!this.cookieService.get('docmanToken')) {
       this.router.navigate(['/login']);
     }
     this.refreshToken = new FormGroup({

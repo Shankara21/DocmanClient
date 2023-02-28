@@ -39,9 +39,9 @@ export class IndexDocumentComponent implements OnInit {
   id: any;
   name: string = this.router.url.substring(1);
   ngOnInit(): void {
-    const token = this.cookieService.get('refreshToken');
+    const token = this.cookieService.get('docmanToken');
 
-    if (!this.cookieService.get('refreshToken')) {
+    if (!this.cookieService.get('docmanToken')) {
       this.router.navigate(['/login']);
     }
     this.refreshToken = new FormGroup({
@@ -86,9 +86,14 @@ export class IndexDocumentComponent implements OnInit {
     window.location.reload();
   }
   delete(id: any) {
-    this.ControlService.deleteDocument(id).subscribe((res: any) => { 
-      console.log(res);
-      this.reload();
+    this.ControlService.deleteDocument(id).subscribe((res: any) => {
+      this.ControlService.getByName(this.name).subscribe((res: any) => {
+        this.category = res;
+        this.idCategory = this.category[0].id;
+        this.ControlService.getDocument(this.idCategory).subscribe((res: any) => {
+          this.data = res;
+        })
+      })
     })
   }
   filter() {

@@ -1,15 +1,15 @@
-<main style="background-image: url('assets/img/bgdocman.jpg');background-repeat: no-repeat; background-size: cover;" >
-  <div style="background-color: rgba(236, 114, 114, 0.6);">
+<main style="background-image: url('assets/img/docman.jpg');background-repeat: no-repeat; background-size: cover;" >
+  <div >
     <section
       class="section register d-flex flex-column align-items-center justify-content-center py-4"
-      style="max-height: 100vh; overflow: hidden"
+      style="height: 100vh; overflow: hidden"
     >
       <div class="container">
         <div class="row justify-content-center">
           <div
             class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center"
           >
-            <div class="card mt-4" style="width: 700px">
+            <div class="card target-center bg-transparent target-blur" style="width: 700px">
               <div class="d-flex justify-content-center pt-4">
                 <a
                   href="index.html"
@@ -24,12 +24,9 @@
                   <h5 class="card-title text-center pb-0 fs-4">
                     Create an Account
                   </h5>
-                  <p class="text-center small">
-                    Enter your personal details to create account
-                  </p>
                 </div>
                 <form
-                  class="row g-3 needs-validation justify-content-center"
+                  class="row g-3 needs-validation justify-content-center pt-2"
                   novalidate=""
                   [formGroup]="form"
                   (submit)="submit()"

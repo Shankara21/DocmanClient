@@ -51,12 +51,12 @@ export class DashboardComponent implements OnInit {
 
     // Logout otomatis dalam 1 menit
     // setInterval(() => {
-    //   this.cookieService.delete('refreshToken');
+    //   this.cookieService.delete('docmanToken');
     // }, 60000);
 
-    const token = this.cookieService.get('refreshToken');
+    const token = this.cookieService.get('docmanToken');
 
-    if (!this.cookieService.get('refreshToken')) {
+    if (!this.cookieService.get('docmanToken')) {
       this.router.navigate(['/login']);
     }
 
