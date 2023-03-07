@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private ControlService: ControlService, private route:Router) { }
+  constructor(private ControlService: ControlService, private route: Router) { }
   errorMsg: any;
   form!: FormGroup
   ngOnInit(): void {
@@ -24,10 +24,16 @@ export class RegisterComponent implements OnInit {
     });
   }
   submit() {
+    if (this.form.invalid) {
+      this.errorMsg = 'Please fill all the fields correctly';
+      setTimeout(() => {
+        this.errorMsg = null;
+      }, 2000);
+      return;
+    }
     this.ControlService.register(this.form.value).subscribe((res: any) => {
       this.route.navigate(['/login']);
     }, (err: any) => {
-      this.errorMsg = err.error.message;
     });
   }
 
