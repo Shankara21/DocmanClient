@@ -8,6 +8,7 @@ import { BehaviorSubject, catchError, Observable, Subject, throwError } from 'rx
 export class ControlService {
   // Base url
   private port3000 = 'http://localhost:3000/';
+  private port3124 = 'http://192.168.9.47/'
 
   constructor(private HttpClient: HttpClient) { }
   httpOptions = {
@@ -34,80 +35,80 @@ export class ControlService {
 
   // Category
   getCategory() {
-    return this.HttpClient.get(this.port3000 + 'categories')
+    return this.HttpClient.get(this.port3124 + 'categories')
       .pipe(catchError(this.errorHttpHandler))
   }
   getByName(params: any) {
-    return this.HttpClient.get(this.port3000 + `categories/filterName/${params}`)
+    return this.HttpClient.get(this.port3124 + `categories/filterName/${params}`)
       .pipe(catchError(this.errorHttpHandler))
   }
   getById(params: any) {
-    return this.HttpClient.get(this.port3000 + `categories/${params}`)
+    return this.HttpClient.get(this.port3124 + `categories/${params}`)
       .pipe(catchError(this.errorHttpHandler))
   }
 
   // Document
   getDocument(params: any) {
     // alert(params);
-    return this.HttpClient.get(this.port3000 + `documents/${params}`)
+    return this.HttpClient.get(this.port3124 + `documents/${params}`)
       .pipe(catchError(this.errorHttpHandler))
   }
   createDocument(params: any) {
-    return this.HttpClient.post(this.port3000 + 'documents', params)
+    return this.HttpClient.post(this.port3124 + 'documents', params)
       .pipe(catchError(this.errorHttpHandler))
   }
   countDocument() {
-    return this.HttpClient.get(this.port3000 + 'documents/count/document')
+    return this.HttpClient.get(this.port3124 + 'documents/count/document')
       .pipe(catchError(this.errorHttpHandler))
   }
   selectExp(params: any) {
-    return this.HttpClient.post(this.port3000 + 'documents/selectExp', params)
+    return this.HttpClient.post(this.port3124 + 'documents/selectExp', params)
       .pipe(catchError(this.errorHttpHandler))
   }
   showDocument(params: any) {
-    return this.HttpClient.get(this.port3000 + `documents/show/${params}`)
+    return this.HttpClient.get(this.port3124 + `documents/show/${params}`)
       .pipe(catchError(this.errorHttpHandler))
   }
   deleteDocument(id: any) {
-    return this.HttpClient.delete(this.port3000 + `documents/${id}`)
+    return this.HttpClient.delete(this.port3124 + `documents/${id}`)
       .pipe(catchError(this.errorHttpHandler))
   }
   updateDocument(id: any, params: any) {
-    return this.HttpClient.put(this.port3000 + `documents/${id}`, params)
+    return this.HttpClient.put(this.port3124 + `documents/${id}`, params)
       .pipe(catchError(this.errorHttpHandler))
   }
 
   // Auth
   login(params: any) {
-    return this.HttpClient.post(this.port3000 + 'users/login', params)
+    return this.HttpClient.post(this.port3124 + 'users/login', params)
   }
   register(params: any) {
-    return this.HttpClient.post(this.port3000 + 'users/register', params)
+    return this.HttpClient.post(this.port3124 + 'users/register', params)
   }
   logout(params: any) {
-    return this.HttpClient.delete(this.port3000 + `users/logout/${params}`)
+    return this.HttpClient.delete(this.port3124 + `users/logout/${params}`)
       .pipe(catchError(this.errorHttpHandler))
   }
   refreshToken(params: any) {
-    return this.HttpClient.post(this.port3000 + `users/refreshToken`, params)
+    return this.HttpClient.post(this.port3124 + `users/refreshToken`, params)
       .pipe(catchError(this.errorHttpHandler))
   }
 
   // User
   getUser() {
-    return this.HttpClient.get(this.port3000 + 'users')
+    return this.HttpClient.get(this.port3124 + 'users')
       .pipe(catchError(this.errorHttpHandler))
   }
   findUser(id: any) {
-    return this.HttpClient.get(this.port3000 + `users/${id}`)
+    return this.HttpClient.get(this.port3124 + `users/${id}`)
       .pipe(catchError(this.errorHttpHandler))
   }
   deleteUser(id: any) {
-    return this.HttpClient.delete(this.port3000 + `users/${id}`)
+    return this.HttpClient.delete(this.port3124 + `users/${id}`)
       .pipe(catchError(this.errorHttpHandler))
   }
   updateUser(id: any, params: any) {
-    return this.HttpClient.put(this.port3000 + `users/${id}`, params)
+    return this.HttpClient.put(this.port3124 + `users/${id}`, params)
       .pipe(catchError(this.errorHttpHandler))
   }
 
