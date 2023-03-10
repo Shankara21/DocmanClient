@@ -30,7 +30,6 @@
             </div>
           </div>
           <div class="d-flex justify-content-between">
-
             <div *ngIf="data.length">
               <label for="search" class="form-label">Search</label>
               <input
@@ -81,14 +80,15 @@
                     {{ item.noRev }}
                   </td>
                   <td>{{ item.date | date : "YYYY-MM-dd" }}</td>
-                  <td>{{ item.expDate | date : "YYYY-MM-dd"  }}</td>
+                  <td>{{ item.expDate | date : "YYYY-MM-dd" }}</td>
                   <td>
                     <a
-                      href="http://localhost:3000/{{ item.linkDoc }}"
+                      href="http://192.168.9.47:3124/{{ item.linkDoc }}"
                       class="btn btn-secondary"
                       target="_blank"
                       style="border-radius: 50%"
-                      ><i class="fa-solid fa-file"></i></a>
+                      ><i class="fa-solid fa-file"></i
+                    ></a>
                   </td>
                   <td>
                     <div class="dropdown">

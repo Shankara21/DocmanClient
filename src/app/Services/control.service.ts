@@ -8,7 +8,7 @@ import { BehaviorSubject, catchError, Observable, Subject, throwError } from 'rx
 export class ControlService {
   // Base url
   private port3000 = 'http://localhost:3000/';
-  private port3124 = 'http://192.168.9.47/'
+  private port3124 = 'http://192.168.9.47:3124/'
 
   constructor(private HttpClient: HttpClient) { }
   httpOptions = {

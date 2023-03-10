@@ -13,11 +13,10 @@ export class ShowComponent implements OnInit {
   url = this.router.url.substring(6);
   path: any;
   ext = '.pdf';
-  path2 = 'http://localhost:3000//uploads/Contoh-File-Download.pdf';
   ngOnInit(): void {
     this.ControlService.showDocument(this.url).subscribe((res: any) => {
       this.data = res;
-      this.path = 'http://localhost:3000/' + this.data.linkDoc;
+      this.path = 'http://192.168.9.47:3124/' + this.data.linkDoc;
 
       this.ControlService.path = this.path;
 
