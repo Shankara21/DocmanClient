@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   isp: any;
   wi: any;
   form: any;
+  others: any;
 
   test: any;
 
@@ -101,7 +102,7 @@ export class DashboardComponent implements OnInit {
       this.isp = res.isp;
       this.wi = res.wi;
       this.form = res.form;
-
+      this.others = res.others;
     });
 
 

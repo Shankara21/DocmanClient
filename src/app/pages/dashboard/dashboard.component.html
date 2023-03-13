@@ -10,29 +10,38 @@
     </nav>
   </div>
   <section class="section dashboard">
-
-      <div *ngIf="dataDocument.length" class="alert alert-dismissible fade show" role="alert" style="border-radius: 20px;background-color: #FED049;">
+    <div
+      *ngIf="dataDocument.length"
+      class="alert alert-dismissible fade show"
+      role="alert"
+      style="border-radius: 20px; background-color: #fed049"
+    >
       <h4 class="alert-heading">Reminder!</h4>
       <p>
         Halo, <strong>{{ userFound }}</strong>
       </p>
-     <div *ngFor="let item of dataDocument" style="background-color: #FFE15D;border-radius: 15px;" class="mb-3 p-2" >
-       <p>
-        Dokumen <strong>{{ item.Category.name }}</strong> dengan judul
-        <strong>{{ item.title }} </strong> dan nomor dokumen
-        <strong>{{ item.noDoc }}</strong> akan segera memasuki masa tenggang pada
-        tanggal <strong>{{ item.expDate }}</strong> atau
-        <strong>{{ item.diffDate }}</strong> hari lagi
-      </p>
-      <hr>
-      <p class="mb-0">Cek dokumen <a routerLink="/show/{{ item.id }}">disini</a></p>
-     </div>
+      <div
+        *ngFor="let item of dataDocument"
+        style="background-color: #ffe15d; border-radius: 15px"
+        class="mb-3 p-2"
+      >
+        <p>
+          Dokumen <strong>{{ item.Category.name }}</strong> dengan judul
+          <strong>{{ item.title }} </strong> dan nomor dokumen
+          <strong>{{ item.noDoc }}</strong> akan segera memasuki masa tenggang
+          pada tanggal <strong>{{ item.expDate }}</strong> atau
+          <strong>{{ item.diffDate }}</strong> hari lagi
+        </p>
+        <hr />
+        <p class="mb-0">
+          Cek dokumen <a routerLink="/show/{{ item.id }}">disini</a>
+        </p>
+      </div>
       <button
         type="button"
         class="btn-close"
         data-bs-dismiss="alert"
         aria-label="Close"
-
       ></button>
     </div>
 
@@ -89,6 +98,24 @@
                   </div>
                   <h5 class="text-center">FORM</h5>
                   <h3 class="card-title mb-2 text-center">{{ form }}</h3>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <a routerLink="/others" class="mt-3">
+              <div class="card" style="height: 215px; border-radius: 15px">
+                <div class="card-body">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src=" assets/img/icon/others.png"
+                      alt="chart success"
+                      class="rounded m-2"
+                      width="75"
+                    />
+                  </div>
+                  <h5 class="text-center">Others</h5>
+                  <h3 class="card-title mb-2 text-center">{{ others }}</h3>
                 </div>
               </div>
             </a>
