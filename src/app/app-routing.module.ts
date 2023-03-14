@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'wi', component: IndexDocumentComponent },
   { path: 'form', component: IndexDocumentComponent },
   { path: 'others', component: IndexDocumentComponent },
+  { path: 'halal', component: IndexDocumentComponent },
   { path: 'create', component: CreateDocumentComponent },
   { path: 'edit/:id', component: UpdateDocumentComponent },
   { path: 'show/:id', component: ShowComponent },

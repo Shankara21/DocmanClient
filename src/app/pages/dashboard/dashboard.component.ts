@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   wi: any;
   form: any;
   others: any;
+  halal: any;
 
   test: any;
 
@@ -103,6 +104,7 @@ export class DashboardComponent implements OnInit {
       this.wi = res.wi;
       this.form = res.form;
       this.others = res.others;
+      this.halal = res.halal;
     });
 
 
