@@ -37,19 +37,19 @@
             </a>
           </li>
           <li>
-            <a routerLink="/others" routerLinkActive="active">
-              <i class="bi bi-circle"></i><span>Others</span>
+            <a routerLink="/halal" routerLinkActive="active">
+              <i class="bi bi-circle"></i><span>Halal</span>
             </a>
           </li>
           <li>
-            <a routerLink="/halal" routerLinkActive="active">
-              <i class="bi bi-circle"></i><span>Halal</span>
+            <a routerLink="/others" routerLinkActive="active">
+              <i class="bi bi-circle"></i><span>Others</span>
             </a>
           </li>
         </div>
       </ul>
     </li>
-    <li class="nav-item"  *ngIf="controlService.userLevel == 'Admin'">
+    <li class="nav-item" *ngIf="controlService.userLevel == 'Admin'">
       <a
         class="nav-link collapsed"
         data-bs-target="#icons-nav"
